@@ -7,10 +7,6 @@
  */
 package PracticaGitHub;
 
-/**
- *
- * @author Vanessa
- */
-public class Disco {
+public class Disco extends Obra{
     
 }
