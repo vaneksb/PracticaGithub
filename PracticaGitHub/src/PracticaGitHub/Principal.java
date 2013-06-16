@@ -572,7 +572,7 @@ static void buscarLibro(){
                   if (peliculas[i].getTitulo().compareToIgnoreCase(tituloBus.trim()) == 0) {
 
                     System.out.println("----------------------------------------------");
-                    System.out.println("Informacion del Disco " + peliculas[i].getTitulo());
+                    System.out.println("Informacion de la Pelicula " + peliculas[i].getTitulo());
                     System.out.println("----------------------------------------------");
                     System.out.println("");
                     System.out.println("Autor: " + peliculas[i].getAutor());
@@ -609,7 +609,63 @@ static void buscarLibro(){
             vec[i].setAnhoNacimiento(-1);
         }
     }
-
+    /* --------------------- ----- -------------------- */
+    /* --------------------- ----- -------------------- */
+    /* ------------ Opciones de Listado -------------- */
+    /* --------------------- ----- -------------------- */
+    /* --------------------- ----- -------------------- */  
+     static void listadoObras(){
+         
+         
+         
+         
+         
+     
+     }
+      static void listadoPeliculas(){
+         
+         if(contPeliculas>0){
+             System.out.println("----------------------------------------------");
+             System.out.println("Listado de Peliculas");
+             System.out.println("----------------------------------------------");
+                  
+             for(int i=0;i<contPeliculas;i++){            
+                 
+                    System.out.println("----------------------------------------------");
+                    System.out.println("Nombre: " + peliculas[i].getTitulo());
+                    System.out.println("----------------------------------------------");
+                    System.out.println("");
+                    System.out.println("Autor: " + peliculas[i].getAutor());
+                    System.out.println("Productora: " + peliculas[i].getProductora());
+                     System.out.println("Anho Edicion: " + peliculas[i].getAnhoEdicion());
+                    System.out.println("Artistas: ");
+               
+                    Artista[] auxListaInterpretes=peliculas[i].getInterpretes();
+                    
+                     for (int j = 0; j < auxListaInterpretes.length; j++) {
+                         
+                          Artista artista = auxListaInterpretes[j];
+                         System.out.println("Nombre: "+artista.getNombre());
+                         System.out.println("Anho Nacimiento: "+artista.getAnhoNacimiento());
+                         System.out.println("");
+                          
+                      }
+                    
+                  
+                }      
+            
+            
+            
+            }else{
+                 System.out.println("No hay Peliculas registradas."); 
+            }
+         
+         
+         
+     
+     }
+    
+    
     public static void main(String[] args) {
 
         //Variables para creación de artistas
