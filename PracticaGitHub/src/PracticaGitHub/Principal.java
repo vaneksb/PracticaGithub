@@ -64,7 +64,7 @@ public class Principal {
             System.out.println("1.- Crear nuevo artista/libro/disco/pelicula");
             System.out.println("2.- Buscar libro/disco/pelicula");
             System.out.println("3.- Consultar libro/disco/pelicula");
-            System.out.println("4.- Listados");
+            System.out.println("4.- Reportes");
             System.out.println("5.- Salir de la aplicación...");
             System.out.println("Opción: ");
 
@@ -210,8 +210,10 @@ public class Principal {
             System.out.println("\n-------MENÚ DE LISTADOS-------");
             System.out.println("1.- Listado de Obras");
             System.out.println("2.- Listado de Películas");
-            System.out.println("3.- Volver al menú principal");
-            System.out.println("4.- Salir de la aplicación");
+            System.out.println("3.- Buscar todas las obras de un autor");
+            System.out.println("4.- Buscar todas las peliculas de un autor");            
+            System.out.println("5.- Volver al menú principal");
+            System.out.println("6.- Salir de la aplicación");
             System.out.println("Opción: ");
 
             opcionListado = leerEntero();
@@ -222,11 +224,17 @@ public class Principal {
                     break;
                 case 2:
                     System.out.println("Opcion 2");
-                    break;                
+                    break;   
                 case 3:
-                    menuPrincipal();
+                    System.out.println("Opcion 3");
                     break;
                 case 4:
+                    System.out.println("Opcion 4");
+                    break;                                                    
+                case 5:
+                    menuPrincipal();
+                    break;
+                case 6:
                     System.out.println("BYEEEEE...");
                     break;
                 default:
