@@ -15,6 +15,10 @@ public class Principal {
 
     static Artista[] artistas;
     static int contArtistas;
+    static Libro[] libros = new Libro[100];
+    static int contLibros = 0;
+    static Disco[] discos;
+    static int contDiscos;
 
     //Metodo para leer la opción ingresada por teclado, para poder reutilizar
     //el código pues aplica en varios casos
@@ -104,6 +108,9 @@ public class Principal {
             switch (opcionCrear) {
                 case 1:
                     crearArtista();
+                    break;
+                case 2:
+                    crearLibro();
                     break;
                 case 5:
                     menuPrincipal();
@@ -233,7 +240,7 @@ public class Principal {
         //Se devuelve el nuevo vector con la posición adicional
         return nuevoVector;
     }
-
+       
     /* --------------------- ----- -------------------- */
     /* --------------------- ----- -------------------- */
     /* ------------ Opciones de CREACION -------------- */
@@ -270,6 +277,42 @@ public class Principal {
             if (artistas[i] != null) {
                 System.out.println("Artista Nro. " +i+" es "+artistas[i].getNombre()+" y nacio en "+artistas[i].getAnhoNacimiento());
             }
+        }
+    }
+    
+    static void crearLibro(){
+        if(contArtistas==0){
+            System.out.println("No puede crear un libro ya que no hay artistas registrados.");
+        }else{
+            String resp = "";            
+            do
+            {                            
+                String nombreLibro;
+                int anhoEdicion;
+                int indiceArtista;
+                String editorial;
+                int numeroPaginas;
+                System.out.println("\nIntroduzca titulo del Libro: "); 
+                nombreLibro = leerString();
+                System.out.println("Introduzca el año de edición: "); 
+                anhoEdicion = leerEntero();
+                System.out.println("Indique el Número Asociado al artista autor del libro: "); 
+                for(int a=0;a<contArtistas;a++){
+                    System.out.println((a+1)+".- "+artistas[a].getNombre());
+                }
+                indiceArtista = leerEntero();
+                System.out.println("Introduzca la editorial del libro: "); 
+                editorial = leerString();       
+                System.out.println("Introduzca el número de páginas del libro: ");
+                numeroPaginas = leerEntero();                                     
+                libros[(contLibros)]= new Libro(nombreLibro,artistas[(indiceArtista-1)], anhoEdicion, editorial, numeroPaginas);            
+                System.out.println("Libro Creado Satisfactoriamente con los siguientes datos: ");
+                System.out.println("Titulo: "+libros[contLibros].getTitulo()+" Autor: "+libros[contLibros].getAutor().getNombre()+" Año de Edicion: "+libros[contLibros].getAnhoEdicion()+" Editorial: "+libros[contLibros].getEditorial()+" Paginas: "+libros[contLibros].getNPaginas());
+                contLibros++;
+                System.out.println("Desea seguir creando artistas? (Si/No)");
+                resp = leerString();                
+                }while(resp.compareToIgnoreCase("si") == 0);
+            
         }
     }
 
