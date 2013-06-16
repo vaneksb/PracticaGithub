@@ -223,16 +223,16 @@ public class Principal {
 
             switch (opcionListado) {
                 case 1:
-                    System.out.println("Opcion 1");
+                    listadoObras();
                     break;
                 case 2:
-                    System.out.println("Opcion 2");
+                   listadoPeliculas();
                     break;   
                 case 3:
-                    System.out.println("Opcion 3");
+                   obrasAutor();
                     break;
                 case 4:
-                    System.out.println("Opcion 4");
+                   peliculasAutor();
                     break;                                                    
                 case 5:
                     menuPrincipal();
@@ -768,7 +768,49 @@ static void buscarLibro(){
         
         
     }
-      
+      static void peliculasAutor()
+    {
+       
+        String autorBus;
+        System.out.println("\nIngrese el nombre  del Autor que desea Consultar");
+        autorBus = leerString();
+        int bandBusqueda = 0;
+        
+       if(contPeliculas>0){
+           
+            
+            for(int i=0;i<contPeliculas;i++){            
+                  if (peliculas[i].getAutor().getNombre().compareToIgnoreCase(autorBus.trim()) == 0) {
+
+                    System.out.println("----------------------------------------------");
+                    System.out.println("Pelicula " + peliculas[i].getTitulo());
+                    System.out.println("----------------------------------------------");
+                    System.out.println("");
+                    System.out.println("Productora: " + peliculas[i].getProductora());
+                    System.out.println("Anho Edicion: " + peliculas[i].getAnhoEdicion());
+                    System.out.println("Artistas: ");
+               
+                    Artista[] auxListaInterpretes=peliculas[i].getInterpretes();
+                    
+                     for (int j = 0; j < auxListaInterpretes.length; j++) {
+                         
+                          Artista artista = auxListaInterpretes[j];
+                         System.out.println("Nombre: "+artista.getNombre());
+                         System.out.println("Anho Nacimiento: "+artista.getAnhoNacimiento());
+                         System.out.println("");
+                          
+                      }
+                   bandBusqueda = 1; 
+                  
+                }      
+            }
+            
+                if(bandBusqueda==0){
+                    System.out.println("No se encontraron peliculas del autor "+autorBus);
+                } 
+            }
+        
+    } 
     
     public static void main(String[] args) {
 
