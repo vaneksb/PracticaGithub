@@ -511,7 +511,7 @@ static void buscarLibro(){
                     System.out.println("----------------------------------------------");
                     System.out.println("");
                     System.out.println("Editorial: " + libros[i].getEditorial());
-                    System.out.println("Autor: " + libros[i].getAutor());
+                    System.out.println("Autor: " + libros[i].getAutor().getNombre());
                     System.out.println("Anho Edicion: " + libros[i].getAnhoEdicion());
                     System.out.println("Numero Paginas: " + libros[i].getNPaginas());
                     bandBusqueda = 1;
@@ -543,7 +543,7 @@ static void buscarLibro(){
                     System.out.println("Informacion del Disco " + discos[i].getTitulo());
                     System.out.println("----------------------------------------------");
                     System.out.println("");
-                    System.out.println("Autor: " + discos[i].getAutor());
+                    System.out.println("Autor: " + discos[i].getAutor().getNombre());
                     System.out.println("Discografica: " + discos[i].getDiscografica());
                     System.out.println("Anho Edicion: " + discos[i].getAnhoEdicion());
                     System.out.println("Numero Canciones: " + discos[i].getNCanciones());
@@ -575,7 +575,7 @@ static void buscarLibro(){
                     System.out.println("Informacion de la Pelicula " + peliculas[i].getTitulo());
                     System.out.println("----------------------------------------------");
                     System.out.println("");
-                    System.out.println("Autor: " + peliculas[i].getAutor());
+                    System.out.println("Autor: " + peliculas[i].getAutor().getNombre());
                     System.out.println("Productora: " + peliculas[i].getProductora());
                      System.out.println("Anho Edicion: " + peliculas[i].getAnhoEdicion());
                     System.out.println("Artistas: ");
@@ -627,7 +627,7 @@ static void buscarLibro(){
                     System.out.println("Informacion del Disco " + discos[i].getTitulo());
                     System.out.println("----------------------------------------------");
                     System.out.println("");
-                    System.out.println("Autor: " + discos[i].getAutor());
+                    System.out.println("Autor: " + discos[i].getAutor().getNombre());
                     System.out.println("Discografica: " + discos[i].getDiscografica());
                     System.out.println("Anho Edicion: " + discos[i].getAnhoEdicion());
                     System.out.println("Numero Canciones: " + discos[i].getNCanciones());
@@ -651,7 +651,7 @@ static void buscarLibro(){
                     System.out.println("----------------------------------------------");
                     System.out.println("");
                     System.out.println("Editorial: " + libros[i].getEditorial());
-                    System.out.println("Autor: " + libros[i].getAutor());
+                    System.out.println("Autor: " + libros[i].getAutor().getNombre());
                     System.out.println("Anho Edicion: " + libros[i].getAnhoEdicion());
                     System.out.println("Numero Paginas: " + libros[i].getNPaginas());
                
@@ -678,7 +678,7 @@ static void buscarLibro(){
                     System.out.println("Nombre: " + peliculas[i].getTitulo());
                     System.out.println("----------------------------------------------");
                     System.out.println("");
-                    System.out.println("Autor: " + peliculas[i].getAutor());
+                    System.out.println("Autor: " + peliculas[i].getAutor().getNombre());
                     System.out.println("Productora: " + peliculas[i].getProductora());
                      System.out.println("Anho Edicion: " + peliculas[i].getAnhoEdicion());
                     System.out.println("Artistas: ");
@@ -708,6 +708,67 @@ static void buscarLibro(){
      
      }
     
+    static void obrasAutor()
+    {
+       
+        String autorBus;
+        System.out.println("\nIngrese el nombre  del Autor que desea Consultar");
+        autorBus = leerString();
+        int bandBusqueda = 0;
+        
+        if (contLibros > 0) {
+
+            System.out.println("----------------------------------------------");
+            System.out.println("Libros " );
+            System.out.println("----------------------------------------------");
+                 
+            for (int i = 0; i < contLibros; i++) {
+                if (libros[i].getAutor().getNombre().compareToIgnoreCase(autorBus.trim()) == 0) {
+
+                    System.out.println("----------------------------------------------");
+                    System.out.println("Informacion del Libro " + libros[i].getTitulo());
+                    System.out.println("----------------------------------------------");
+                    System.out.println("");
+                    System.out.println("Editorial: " + libros[i].getEditorial());
+                    System.out.println("Anho Edicion: " + libros[i].getAnhoEdicion());
+                    System.out.println("Numero Paginas: " + libros[i].getNPaginas());
+                    bandBusqueda = 1;
+                }
+            }
+
+            if (bandBusqueda == 0) {
+                System.out.println("No se encontarron libros del autor " + autorBus);
+            }
+        } 
+    
+         if (contDiscos > 0) {
+            System.out.println("----------------------------------------------");
+            System.out.println("Discos " );
+            System.out.println("----------------------------------------------");
+          
+
+            for (int i = 0; i < contDiscos; i++) {
+                if (discos[i].getAutor().getNombre().compareToIgnoreCase(autorBus.trim()) == 0) {
+
+                    System.out.println("----------------------------------------------");
+                    System.out.println("Informacion del Disco " + discos[i].getTitulo());
+                    System.out.println("----------------------------------------------");
+                    System.out.println("");
+                    System.out.println("Discografica: " + discos[i].getDiscografica());
+                    System.out.println("Anho Edicion: " + discos[i].getAnhoEdicion());
+                    System.out.println("Numero Canciones: " + discos[i].getNCanciones());
+                    bandBusqueda = 1;
+                }
+            }
+
+            if (bandBusqueda == 0) {
+                System.out.println("No se encontarron discos del autor" + autorBus);
+            }
+        } 
+        
+        
+    }
+      
     
     public static void main(String[] args) {
 
