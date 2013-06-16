@@ -150,14 +150,11 @@ public class Principal {
 
             switch (opcionBuscar) {
                 case 1:
-                    buscarLibro();
+                    System.out.println("Aqui todo para buscar libro");
                     break;
                 case 2:
-                   buscarDisco();
+                    System.out.println("Aqui todo para buscar disco");
                     break;
-                 case 3:
-                   buscarPelicula();
-                    break;    
                 case 6:
                     menuPrincipal();
                     break;
@@ -186,13 +183,13 @@ public class Principal {
 
             switch (opcionConsultar) {
                 case 1:
-                    consultarLibro();
+                    consultarlibro();
                     break;
                 case 2:
-                    consultarDisco();
+                    consultardisco();
                     break;
                 case 3:
-                    consultarPelicula();
+                    consultarpelicula();
                     break;
                 case 4:
                     menuPrincipal();
@@ -428,7 +425,7 @@ public class Principal {
     /* --------------------- ----- -------------------- */
     /* --------------------- ----- -------------------- */    
     
-    static void consultarLibro(){
+    static void consultarlibro(){
         if(contLibros>0){
             String tituloAux;
             System.out.println("\nIngrese el titulo del libro que desea consultar");
@@ -450,7 +447,7 @@ public class Principal {
         }        
     }
     
-    static void consultarDisco(){
+    static void consultardisco(){
         if(contDiscos>0){                    
             String tituloAux;
             System.out.println("\nIngrese el titulo del disco que desea consultar");
@@ -473,7 +470,7 @@ public class Principal {
     }
         
     
-    static void consultarPelicula(){
+    static void consultarpelicula(){
         if(contPeliculas>0){
             String tituloAux;
             System.out.println("\nIngrese el titulo de la pelicula que desea consultar");
@@ -493,115 +490,8 @@ public class Principal {
             }else{
                  System.out.println("No hay Peliculas registradas para consultar."); 
             }
-    } 
-    
-static void buscarLibro(){
-    
-       if (contLibros > 0) {
-            String tituloBus;
-            System.out.println("\nIngrese el titulo del libro que desea Buscar");
-            tituloBus = leerString();
-            int bandBusqueda = 0;
+    }    
 
-            for (int i = 0; i < contLibros; i++) {
-                if (libros[i].getTitulo().compareToIgnoreCase(tituloBus.trim()) == 0) {
-
-                    System.out.println("----------------------------------------------");
-                    System.out.println("Informacion del Libro " + libros[i].getTitulo());
-                    System.out.println("----------------------------------------------");
-                    System.out.println("");
-                    System.out.println("Editorial: " + libros[i].getEditorial());
-                    System.out.println("Autor: " + libros[i].getAutor());
-                    System.out.println("Anho Edicion: " + libros[i].getAnhoEdicion());
-                    System.out.println("Numero Paginas: " + libros[i].getNPaginas());
-                    bandBusqueda = 1;
-                }
-            }
-
-            if (bandBusqueda == 0) {
-                System.out.println("No se encontarron libros con el titulo " + tituloBus);
-            }
-        } else {
-            System.out.println("No hay libros registrados para buscar.");
-        }
-    
-    
-    
-}
-  static void buscarDisco(){
-    
-       if (contDiscos > 0) {
-            String nombreBus;
-            System.out.println("\nIngrese el titulo del Disco que desea Buscar");
-            nombreBus = leerString();
-            int bandBusqueda = 0;
-
-            for (int i = 0; i < contDiscos; i++) {
-                if (discos[i].getTitulo().compareToIgnoreCase(nombreBus.trim()) == 0) {
-
-                    System.out.println("----------------------------------------------");
-                    System.out.println("Informacion del Disco " + discos[i].getTitulo());
-                    System.out.println("----------------------------------------------");
-                    System.out.println("");
-                    System.out.println("Autor: " + discos[i].getAutor());
-                    System.out.println("Discografica: " + discos[i].getDiscografica());
-                    System.out.println("Anho Edicion: " + discos[i].getAnhoEdicion());
-                    System.out.println("Numero Canciones: " + discos[i].getNCanciones());
-                    bandBusqueda = 1;
-                }
-            }
-
-            if (bandBusqueda == 0) {
-                System.out.println("No se encontarron discos con el titulo " + nombreBus);
-            }
-        } else {
-            System.out.println("No hay Discos registrados para buscar.");
-        }
-    
-    
-    
-}  
-   static void buscarPelicula(){
-        if(contPeliculas>0){
-            String tituloBus;
-            System.out.println("\nIngrese el titulo de la pelicula que desea consultar");
-            tituloBus=leerString();
-            int bandBusqueda=0;
-            
-            for(int i=0;i<contPeliculas;i++){            
-                  if (peliculas[i].getTitulo().compareToIgnoreCase(tituloBus.trim()) == 0) {
-
-                    System.out.println("----------------------------------------------");
-                    System.out.println("Informacion del Disco " + peliculas[i].getTitulo());
-                    System.out.println("----------------------------------------------");
-                    System.out.println("");
-                    System.out.println("Autor: " + peliculas[i].getAutor());
-                    System.out.println("Productora: " + peliculas[i].getProductora());
-                     System.out.println("Anho Edicion: " + peliculas[i].getAnhoEdicion());
-                    System.out.println("Artistas: ");
-               
-                    Artista[] auxListaInterpretes=peliculas[i].getInterpretes();
-                    
-                     for (int j = 0; j < auxListaInterpretes.length; j++) {
-                         
-                          Artista artista = auxListaInterpretes[j];
-                         System.out.println("Nombre: "+artista.getNombre());
-                         System.out.println("Anho Nacimiento: "+artista.getAnhoNacimiento());
-                         System.out.println("");
-                          
-                      }
-                    
-                    bandBusqueda = 1;
-                }      
-            }
-            
-            if(bandBusqueda==0){
-                System.out.println("No se encontraron peliculas con el titulo "+tituloBus);
-            } 
-            }else{
-                 System.out.println("No hay Peliculas registradas para buscar."); 
-            }
-    } 
     public static void inicializarVectorArtistas(Artista[] vec) {
         for (int i = 0; i < vec.length; i++) {
             vec[i] = new Artista();
