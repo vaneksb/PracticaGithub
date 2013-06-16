@@ -17,8 +17,8 @@ public class Principal {
     static int contArtistas;
     static Libro[] libros = new Libro[100];
     static int contLibros = 0;
-    static Disco[] discos;
-    static int contDiscos;
+    static Disco[] discos = new Disco[100];
+    static int contDiscos = 0;
 
     //Metodo para leer la opción ingresada por teclado, para poder reutilizar
     //el código pues aplica en varios casos
@@ -112,6 +112,9 @@ public class Principal {
                 case 2:
                     crearLibro();
                     break;
+                case 3:
+                     crearDisco();
+                     break;
                 case 5:
                     menuPrincipal();
                     break;
@@ -309,12 +312,47 @@ public class Principal {
                 System.out.println("Libro Creado Satisfactoriamente con los siguientes datos: ");
                 System.out.println("Titulo: "+libros[contLibros].getTitulo()+" Autor: "+libros[contLibros].getAutor().getNombre()+" Año de Edicion: "+libros[contLibros].getAnhoEdicion()+" Editorial: "+libros[contLibros].getEditorial()+" Paginas: "+libros[contLibros].getNPaginas());
                 contLibros++;
-                System.out.println("Desea seguir creando artistas? (Si/No)");
+                System.out.println("Desea seguir creando Libros? (Si/No)");
                 resp = leerString();                
                 }while(resp.compareToIgnoreCase("si") == 0);
             
         }
     }
+    
+    static void crearDisco(){
+        if(contArtistas==0){
+            System.out.println("No puede crear un Disco ya que no hay artistas registrados.");
+        }else{
+            String resp = "";            
+            do
+            {                            
+                String tituloDisco;
+                int anhoEdicion;
+                int indiceArtista;
+                String discografica;
+                int numeroCanciones;
+                System.out.println("\nIntroduzca titulo del Disco: "); 
+                tituloDisco = leerString();
+                System.out.println("Introduzca el año de edición: "); 
+                anhoEdicion = leerEntero();
+                System.out.println("Indique el Número Asociado al artista creador del Disco: "); 
+                for(int a=0;a<contArtistas;a++){
+                    System.out.println((a+1)+".- "+artistas[a].getNombre());
+                }
+                indiceArtista = leerEntero();
+                System.out.println("Introduzca el nombre de la discografica del Disco: "); 
+                discografica = leerString();       
+                System.out.println("Introduzca el número de canciones del Disco: ");
+                numeroCanciones = leerEntero();                                     
+                discos[(contDiscos)]= new Disco(tituloDisco,artistas[(indiceArtista-1)], anhoEdicion, discografica, numeroCanciones);            
+                System.out.println("Disco Creado Satisfactoriamente con los siguientes datos: ");
+                System.out.println("Titulo: "+discos[contLibros].getTitulo()+" Autor: "+discos[contLibros].getAutor().getNombre()+" Año de Edicion: "+discos[contLibros].getAnhoEdicion()+" Discografica: "+discos[contLibros].getDiscografica()+" Numero de Canciones: "+discos[contLibros].getNCanciones());
+                contDiscos++;
+                System.out.println("Desea seguir creando Discos? (Si/No)");
+                resp = leerString();                
+                }while(resp.compareToIgnoreCase("si") == 0);            
+        }
+    }    
 
     public static void inicializarVectorArtistas(Artista[] vec) {
         for (int i = 0; i < vec.length; i++) {
