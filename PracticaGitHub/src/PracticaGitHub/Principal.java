@@ -229,8 +229,6 @@ public class Principal {
                 nuevoVector[i] = vector[i];
             }
         }
-        //nuevoVector[i].setNombre("");
-        //nuevoVector[i].setAnhoNacimiento(-1);
         
         //Se devuelve el nuevo vector con la posición adicional
         return nuevoVector;
@@ -245,18 +243,6 @@ public class Principal {
         String resp = "";
         String nombreArtista = "";
         int anho = 0;
-        //boolean posVacia = false;
-
-        //Primero se busca la primera posición vacía del vector
-        /*for (int i = 0; i < artistas.length && posVacia == false; i++) {
-            //Se revisa cada pos del vector
-            if (artistas[i].getAnhoNacimiento() == -1) {
-                posVacia = true;
-                contArtistas = i;
-                //System.out.println("Cantidad de artistas hasta ahora: " + i+1);
-            }
-        }*/
-
         //Luego se empiezan a registrar los artistas
         do {
             //Si el vector de artistas ya está lleno
@@ -292,15 +278,16 @@ public class Principal {
             vec[i] = new Artista();
             vec[i].setNombre("");
             vec[i].setAnhoNacimiento(-1);
-            //System.out.println("\nVec[" + i + "].nombre=" + vec[i].getNombre() + " / Vec[" + i + "].Anho=" + vec[i].getAnhoNacimiento());
         }
     }
 
     public static void main(String[] args) {
 
+        //Variables para creación de artistas
         artistas = new Artista[3];
         inicializarVectorArtistas(artistas);
         contArtistas = 0;
+        
         menuPrincipal();
     }
 }
