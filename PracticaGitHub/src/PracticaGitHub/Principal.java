@@ -102,7 +102,7 @@ public class Principal {
             System.out.println("3.- Crear disco");
             System.out.println("4.- Crear película");
             System.out.println("5.- Volver al menú principal");
-            System.out.println("6.- Salir de la aplicación");
+            System.out.println("6.- Salir de la aplicacion");
             System.out.println("Opción: ");
 
             opcionCrear = leerEntero();
@@ -183,10 +183,10 @@ public class Principal {
 
             switch (opcionConsultar) {
                 case 1:
-                    System.out.println("Opcion 1");
+                    consultarlibro();
                     break;
                 case 2:
-                    System.out.println("Opcion 2");
+                    consultardisco();
                     break;
                 case 3:
                     System.out.println("Opcion 3");
@@ -411,6 +411,47 @@ public class Principal {
         }
     }        
     
+    /* --------------------- ----- -------------------- */
+    /* --------------------- ----- -------------------- */
+    /* ------------ Opciones de Busqueda -------------- */
+    /* --------------------- ----- -------------------- */
+    /* --------------------- ----- -------------------- */    
+    
+    static void consultarlibro(){
+        String tituloAux;
+        System.out.println("\nIngrese el titulo del libro que desea consultar");
+        tituloAux=leerString();
+        int bandBusqueda=0;
+        
+        for(int i=0;i<contLibros;i++){            
+            if(libros[i].getTitulo().compareToIgnoreCase(tituloAux)==0){
+                System.out.println("Para el libro: "+libros[i].getTitulo()+" La Editorial es: "+libros[i].getEditorial()+" Y el numero de paginas son: "+libros[i].getNPaginas());
+                bandBusqueda=1;
+            }        
+        }
+        
+        if(bandBusqueda==0){
+            System.out.println("No se encontarron libros con el titulo "+tituloAux);
+        }        
+    }
+    
+    static void consultardisco(){
+        String tituloAux;
+        System.out.println("\nIngrese el titulo del disco que desea consultar");
+        tituloAux=leerString();
+        int bandBusqueda=0;
+        
+        for(int i=0;i<contDiscos;i++){            
+            if(discos[i].getTitulo().compareToIgnoreCase(tituloAux)==0){
+                System.out.println("Para el disco: "+discos[i].getTitulo()+" La Discografica es: "+discos[i].getDiscografica()+" Y el numero de canciones es: "+discos[i].getNCanciones());
+                bandBusqueda=1;
+            }        
+        }
+        
+        if(bandBusqueda==0){
+            System.out.println("No se encontarron discos con el titulo "+tituloAux);
+        }        
+    }    
 
     public static void inicializarVectorArtistas(Artista[] vec) {
         for (int i = 0; i < vec.length; i++) {
