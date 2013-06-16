@@ -13,7 +13,12 @@ import java.io.InputStreamReader;
 
 public class Principal {
 
-    static public int leerOpcion() {
+    static Artista[] artistas;
+    static int contArtistas;
+
+    //Metodo para leer la opción ingresada por teclado, para poder reutilizar
+    //el código pues aplica en varios casos
+    public static int leerEntero() {
         int op = 0;
         String lectura;
         try {
@@ -21,16 +26,33 @@ public class Principal {
             BufferedReader teclado = new BufferedReader(entrada);
             lectura = teclado.readLine();
             op = Integer.parseInt(lectura);
-        } 
-        catch (IOException ex) {
+        } catch (IOException ex) {
             System.out.println("ERROR !!!!!");
         }
         return op;
     }
-    
+
+    //Metodo para leer una palabra (String) por teclado, para poder reutilizar
+    //el código pues aplica en varios casos
+    public static String leerString() {
+        String palabra = "";
+        try {
+            InputStreamReader entrada = new InputStreamReader(System.in);
+            BufferedReader teclado = new BufferedReader(entrada);
+            palabra = teclado.readLine();
+        } catch (IOException ex) {
+            System.out.println("ERROR !!!!!");
+        }
+        return palabra;
+    }
+
+    /* --------------------- ----- -------------------- */
+    /* --------------------- ----- -------------------- */
+    /* --------------------- MENUS -------------------- */
+    /* --------------------- ----- -------------------- */
+    /* --------------------- ----- -------------------- */
     static public void menuPrincipal() {
         int opcion = -1;
-
         do {
             System.out.println("\n-------MENÚ PRINCIPAL-------");
             System.out.println("1.- Crear nuevo artista/libro/disco/pelicula");
@@ -40,7 +62,7 @@ public class Principal {
             System.out.println("5.- Salir de la aplicación...");
             System.out.println("Opción: ");
 
-            opcion = leerOpcion();
+            opcion = leerEntero();
 
             switch (opcion) {
                 case 1:
@@ -62,13 +84,11 @@ public class Principal {
                     System.out.println("Introduzca opción válida");
                     break;
             }
-        }while(opcion!=5);
+        } while (opcion != 5);
     }
 
     static public void menuCrear() {
-
         int opcionCrear = 0;
-
         do {
             System.out.println("\n-------MENÚ DE CREACIÓN-------");
             System.out.println("1.- Crear artista");
@@ -79,11 +99,11 @@ public class Principal {
             System.out.println("6.- Salir de la aplicación");
             System.out.println("Opción: ");
 
-            opcionCrear = leerOpcion();
+            opcionCrear = leerEntero();
 
             switch (opcionCrear) {
                 case 1:
-                    //crearArtista();
+                    crearArtista();
                     break;
                 case 5:
                     menuPrincipal();
@@ -100,7 +120,6 @@ public class Principal {
 
     static void menuBuscar() {
         int opcionBuscar = 0;
-
         do {
             System.out.println("\n-------MENÚ DE BÚSQUEDA-------");
             System.out.println("1.- Buscar libro");
@@ -112,7 +131,7 @@ public class Principal {
             System.out.println("7.- Salir de la aplicación");
             System.out.println("Opción: ");
 
-            opcionBuscar = leerOpcion();
+            opcionBuscar = leerEntero();
 
             switch (opcionBuscar) {
                 case 1:
@@ -136,7 +155,6 @@ public class Principal {
 
     static public void menuConsultar() {
         int opcionConsultar = 0;
-
         do {
             System.out.println("\n-------MENÚ DE CONSULTA-------");
             System.out.println("1.- Consultar editorial y número de páginas de un libro");
@@ -146,7 +164,7 @@ public class Principal {
             System.out.println("5.- Salir de la aplicación");
             System.out.println("Opción: ");
 
-            opcionConsultar = leerOpcion();
+            opcionConsultar = leerEntero();
 
             switch (opcionConsultar) {
                 case 1:
@@ -173,7 +191,6 @@ public class Principal {
 
     static public void menuListado() {
         int opcionListado = 0;
-
         do {
             System.out.println("\n-------MENÚ DE LISTADOS-------");
             System.out.println("1.- Listado de Obras");
@@ -182,7 +199,7 @@ public class Principal {
             System.out.println("4.- Salir de la aplicación");
             System.out.println("Opción: ");
 
-            opcionListado = leerOpcion();
+            opcionListado = leerEntero();
 
             switch (opcionListado) {
                 case 1:
@@ -202,9 +219,88 @@ public class Principal {
                     break;
             }
         } while (opcionListado != 5);
-    }   
+    }
+
+    public static Artista[] aumentarVector(Artista[] vector) {
+        Artista[] nuevoVector = new Artista[vector.length + 1];
+        for (int i = 0; i < vector.length; i++) {
+            //Se guardan en el vector nuevo, los artistas que ya estaban guardados
+            if (vector[i] != null) {
+                nuevoVector[i] = vector[i];
+            }
+        }
+        //nuevoVector[i].setNombre("");
+        //nuevoVector[i].setAnhoNacimiento(-1);
+        
+        //Se devuelve el nuevo vector con la posición adicional
+        return nuevoVector;
+    }
+
+    /* --------------------- ----- -------------------- */
+    /* --------------------- ----- -------------------- */
+    /* ------------ Opciones de CREACION -------------- */
+    /* --------------------- ----- -------------------- */
+    /* --------------------- ----- -------------------- */
+    static void crearArtista() {
+        String resp = "";
+        String nombreArtista = "";
+        int anho = 0;
+        //boolean posVacia = false;
+
+        //Primero se busca la primera posición vacía del vector
+        /*for (int i = 0; i < artistas.length && posVacia == false; i++) {
+            //Se revisa cada pos del vector
+            if (artistas[i].getAnhoNacimiento() == -1) {
+                posVacia = true;
+                contArtistas = i;
+                //System.out.println("Cantidad de artistas hasta ahora: " + i+1);
+            }
+        }*/
+
+        //Luego se empiezan a registrar los artistas
+        do {
+            //Si el vector de artistas ya está lleno
+            if (contArtistas >= artistas.length) {
+                //Se debe agregar una posición más al vector para poder guardar el nuevo
+                artistas = aumentarVector(artistas);
+            }
+
+            System.out.println("\nIntroduzca nombre del artista: ");
+            nombreArtista = leerString();
+            System.out.println("Año de Nacimiento: ");
+            anho = leerEntero();
+            artistas[contArtistas] = new Artista(nombreArtista, anho);
+            System.out.println("Nombre: " + artistas[contArtistas].getNombre() + " - Año: " + artistas[contArtistas].getAnhoNacimiento());
+            contArtistas++;
+
+            System.out.println("Desea seguir creando artistas? (Si/No)");
+            resp = leerString();
+        } while (resp.compareToIgnoreCase("si") == 0);
+        
+        System.out.println("\n-------Verificando correcta creacion de artistas-------");
+                
+        for (int i = 0; i < artistas.length; i++) {
+            //Se guardan en el vector nuevo, los artistas que ya estaban guardados
+            if (artistas[i] != null) {
+                System.out.println("Artista Nro. " +i+" es "+artistas[i].getNombre()+" y nacio en "+artistas[i].getAnhoNacimiento());
+            }
+        }
+    }
+
+    public static void inicializarVectorArtistas(Artista[] vec) {
+        for (int i = 0; i < vec.length; i++) {
+            vec[i] = new Artista();
+            vec[i].setNombre("");
+            vec[i].setAnhoNacimiento(-1);
+            //System.out.println("\nVec[" + i + "].nombre=" + vec[i].getNombre() + " / Vec[" + i + "].Anho=" + vec[i].getAnhoNacimiento());
+        }
+    }
 
     public static void main(String[] args) {
+
+        artistas = new Artista[3];
+        inicializarVectorArtistas(artistas);
+        contArtistas = 0;
         menuPrincipal();
     }
 }
