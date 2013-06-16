@@ -616,8 +616,51 @@ static void buscarLibro(){
     /* --------------------- ----- -------------------- */  
      static void listadoObras(){
          
+          if (contDiscos > 0) {
+            System.out.println("----------------------------------------------");
+             System.out.println("Listado de Discos");
+             System.out.println("----------------------------------------------");
+          
+            for (int i = 0; i < contDiscos; i++) {
+               
+                    System.out.println("----------------------------------------------");
+                    System.out.println("Informacion del Disco " + discos[i].getTitulo());
+                    System.out.println("----------------------------------------------");
+                    System.out.println("");
+                    System.out.println("Autor: " + discos[i].getAutor());
+                    System.out.println("Discografica: " + discos[i].getDiscografica());
+                    System.out.println("Anho Edicion: " + discos[i].getAnhoEdicion());
+                    System.out.println("Numero Canciones: " + discos[i].getNCanciones());
+                
+            }
+
+            
+        } else {
+            System.out.println("No hay Discos registrados.");
+        }
+         if (contLibros > 0) {
+           System.out.println("----------------------------------------------");
+             System.out.println("Listado de Libros");
+             System.out.println("----------------------------------------------");
+          
          
-         
+            for (int i = 0; i < contLibros; i++) {
+             
+                    System.out.println("----------------------------------------------");
+                    System.out.println("Informacion del Libro " + libros[i].getTitulo());
+                    System.out.println("----------------------------------------------");
+                    System.out.println("");
+                    System.out.println("Editorial: " + libros[i].getEditorial());
+                    System.out.println("Autor: " + libros[i].getAutor());
+                    System.out.println("Anho Edicion: " + libros[i].getAnhoEdicion());
+                    System.out.println("Numero Paginas: " + libros[i].getNPaginas());
+               
+            }
+
+           
+        } else {
+            System.out.println("No hay libros registrados.");
+        } 
          
          
      
