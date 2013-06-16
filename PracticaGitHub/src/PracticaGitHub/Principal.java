@@ -19,6 +19,8 @@ public class Principal {
     static int contLibros = 0;
     static Disco[] discos = new Disco[100];
     static int contDiscos = 0;
+    static Pelicula[] peliculas = new Pelicula[100];
+    static int contPeliculas = 0;
 
     //Metodo para leer la opción ingresada por teclado, para poder reutilizar
     //el código pues aplica en varios casos
@@ -114,6 +116,9 @@ public class Principal {
                     break;
                 case 3:
                      crearDisco();
+                     break;
+                case 4:
+                     crearPelicula();
                      break;
                 case 5:
                     menuPrincipal();
@@ -217,7 +222,7 @@ public class Principal {
                     break;
                 case 2:
                     System.out.println("Opcion 2");
-                    break;
+                    break;                
                 case 3:
                     menuPrincipal();
                     break;
@@ -352,7 +357,60 @@ public class Principal {
                 resp = leerString();                
                 }while(resp.compareToIgnoreCase("si") == 0);            
         }
-    }    
+    }   
+    
+    
+    static void crearPelicula(){
+        if(contArtistas==0){
+            System.out.println("No puede crear una Pelicula ya que no hay artistas registrados.");
+        }else{
+            String resp = "";            
+            do
+            {                            
+                String tituloPelicula;
+                int anhoEdicion;
+                int indiceArtista;
+                String productora;
+                String indiceElenco;
+                                                
+                System.out.println("\nIntroduzca titulo de la Pelicula: "); 
+                tituloPelicula = leerString();
+                System.out.println("Introduzca el año de edición: "); 
+                anhoEdicion = leerEntero();
+                System.out.println("Indique el Número Asociado al artista autor de la pelicula: "); 
+                for(int a=0;a<contArtistas;a++){
+                    System.out.println((a+1)+".- "+artistas[a].getNombre());
+                }
+                indiceArtista = leerEntero();
+                System.out.println("Introduzca el nombre de la productora de la Pelicula: "); 
+                productora = leerString();
+                System.out.println("Indique los numeros separados por comas de los artitas que conformaron el elenco de la pelicula: ");                
+                for(int a=0;a<contArtistas;a++){
+                    System.out.println((a+1)+".- "+artistas[a].getNombre());
+                }
+                indiceElenco = leerString();
+                
+                String[] arrayElenco = indiceElenco.split(",");
+                Artista[] elenco = new Artista[arrayElenco.length];
+                
+                for(int e=0;e<arrayElenco.length;e++){
+                    elenco[e]=artistas[(Integer.parseInt(arrayElenco[e])-1)];  
+                }
+                                                
+                peliculas[(contPeliculas)] = new Pelicula(tituloPelicula,artistas[(indiceArtista-1)], anhoEdicion, productora, elenco);            
+                System.out.println("Pelicula Creada Satisfactoriamente con los siguientes datos: ");
+                System.out.println("Titulo: "+peliculas[contPeliculas].getTitulo()+" Autor: "+peliculas[contPeliculas].getAutor().getNombre()+" Año de Edicion: "+peliculas[contPeliculas].getAnhoEdicion()+" Productora: "+peliculas[contPeliculas].getProductora());
+                System.out.println("Elenco: ");
+                for(int e=0; e < peliculas[contPeliculas].getInterpretes().length; e++){
+                    System.out.println("--> "+peliculas[contPeliculas].getInterpretes()[e].getNombre());
+                }                
+                contPeliculas++;
+                System.out.println("Desea seguir creando Peliculas? (Si/No)");
+                resp = leerString();                
+                }while(resp.compareToIgnoreCase("si") == 0);            
+        }
+    }        
+    
 
     public static void inicializarVectorArtistas(Artista[] vec) {
         for (int i = 0; i < vec.length; i++) {
