@@ -725,7 +725,7 @@ public class Principal {
             System.out.println("No hay libros registrados.");
         }
 
-
+        listadoPeliculas();
 
     }
 
@@ -748,17 +748,13 @@ public class Principal {
                 System.out.println("Artistas: ");
 
                 Artista[] auxListaInterpretes = peliculas[i].getInterpretes();
-
                 for (int j = 0; j < auxListaInterpretes.length; j++) {
-
                     Artista artista = auxListaInterpretes[j];
                     System.out.println("Nombre: " + artista.getNombre());
                     System.out.println("Anho Nacimiento: " + artista.getAnhoNacimiento());
                     System.out.println("");
 
                 }
-
-
             }
 
 
