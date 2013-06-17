@@ -352,9 +352,11 @@ public class Principal {
             do {
                 String nombreLibro;
                 int anhoEdicion;
-                int indiceArtista;
-                String editorial;
+                int indiceArtista; 
                 int numeroPaginas;
+                String editorial;
+               boolean negarArtista=false;
+               
 
                 //Si el vector de libros ya está lleno
                 if (contLibros >= libros.length) {
@@ -366,11 +368,20 @@ public class Principal {
                 nombreLibro = leerString();
                 System.out.println("Introduzca el año de edición: ");
                 anhoEdicion = leerEntero();
-                System.out.println("Indique el Número Asociado al artista autor del libro: ");
-                for (int a = 0; a < contArtistas; a++) {
-                    System.out.println((a + 1) + ".- " + artistas[a].getNombre());
-                }
-                indiceArtista = leerEntero();
+                do{
+                        negarArtista=false;
+                        System.out.println("Indique el Número Asociado al artista autor del libro: ");
+                        for (int a = 0; a < contArtistas; a++) {
+                            System.out.println((a + 1) + ".- " + artistas[a].getNombre());
+                        }
+                        
+                        indiceArtista = leerEntero();
+                        
+                        if(indiceArtista>(contArtistas) || indiceArtista<contArtistas)
+                            negarArtista=true;
+                        
+                }while(negarArtista);
+              
                 System.out.println("Introduzca la editorial del libro: ");
                 editorial = leerString();
                 System.out.println("Introduzca el número de páginas del libro: ");
